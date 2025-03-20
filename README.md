@@ -17,7 +17,7 @@ A **fun voice assistant project** that lets you **open apps and websites** on **
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/your-username/Jarvis-Voice-Assistant.git
+   git clone https://github.com/Chaitanya-Dev26/Jarvis-Voice-Assistant.git
    cd Jarvis-Voice-Assistant
 
 2. **Install Dependencies**
