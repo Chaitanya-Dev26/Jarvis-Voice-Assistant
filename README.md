@@ -42,7 +42,9 @@ A **fun voice assistant project** that lets you **open apps and websites** on **
 
 - `"Open Google"` → Launches **Google Chrome**  
 - `"Open YouTube"` → Opens **YouTube in Chrome**  
-- `"Open Instagram"` → Opens **Instagram in Chrome**  
+- `"Open Instagram"` → Opens **Instagram in Chrome**
+- `"Open Spotify"` → Launches **Spotify**  
+- `"Open WhatsApp"` → Opens **WhatsApp**   
 - `"Stop"` or `"Exit"` → **Closes the assistant**  
 
 ## 🔹 License  
