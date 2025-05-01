@@ -9,7 +9,7 @@ A **fun voice assistant project** that lets you **open apps and websites** on **
 ✅ **Web Navigation** – Instantly opens YouTube, Instagram, and other websites.  
 ✅ **Fully Hands-Free** – Uses **macOS Spotlight (`Cmd + Space`)** for seamless launching.  
 ✅ **Fast Execution** – Optimized for speed with minimal delays.  
-✅ **Stop Command** – Say `"Stop"` or `"Exit"` to quit.  
+✅ **Stop Command** – Say `"Exit"`  or `"Stop"` to quit.  
 
 ---
 
@@ -45,7 +45,7 @@ A **fun voice assistant project** that lets you **open apps and websites** on **
 - `"Open Instagram"` → Opens **Instagram in Chrome**
 - `"Open Spotify"` → Launches **Spotify**  
 - `"Open WhatsApp"` → Opens **WhatsApp**   
-- `"Stop"` or `"Exit"` → **Closes the assistant**  
+- `"Exit"` or `"Stop"` → **Closes the assistant**  
 
 ## 🔹 License  
 This project is for fun & learning purposes. Use it at your own risk.  
