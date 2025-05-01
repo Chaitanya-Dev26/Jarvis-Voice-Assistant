@@ -51,7 +51,9 @@ def open_app(app_name, website=None):
         "whatsapp": "Launching WhatsApp.",
     }
 
-    speak(responses.get(app_name.lower(), f"Opening {app_name}..."))
+    message = responses.get(app_name.lower(), f"Opening {app_name}...")
+    speak(message)
+    print(f"{app_name} opened.")  # Display the message in the terminal
 
     # Trigger Spotlight Search
     trigger_spotlight()
