@@ -3,6 +3,8 @@ import pyautogui
 import speech_recognition as sr
 import pyttsx3
 import subprocess
+import sys
+import platform
 
 engine = pyttsx3.init()
 engine.setProperty('rate', 180)
@@ -18,7 +20,7 @@ def listen_command():
     with sr.Microphone() as source:
         speak("What would you like me to open?")
         print("Listening...")
-        recognizer.adjust_for_ambient_noise(source, duration=0.5)
+        recognizer.adjust_for_ambient_noise(source, duration=1.0)
         audio = recognizer.listen(source)
 
     try:
@@ -31,10 +33,13 @@ def listen_command():
         return None
 
 def trigger_spotlight():
-    """Triggers Spotlight Search using AppleScript."""
-    script = 'tell application "System Events" to key code 49 using {command down}'
-    subprocess.run(["osascript", "-e", script])
-    time.sleep(0.3)
+    """Triggers Spotlight Search using AppleScript (only on macOS)."""
+    if platform.system() == "Darwin":
+        script = 'tell application "System Events" to key code 49 using {command down}'
+        subprocess.run(["osascript", "-e", script])
+        time.sleep(0.3)
+    else:
+        speak("Spotlight is only available on macOS.")
 
 def open_app(app_name, website=None):
     """Opens an app through Spotlight Search and types it automatically."""
@@ -46,7 +51,7 @@ def open_app(app_name, website=None):
         "whatsapp": "Launching WhatsApp.",
     }
 
-    speak(responses.get(app_name, f"Opening {app_name}..."))
+    speak(responses.get(app_name.lower(), f"Opening {app_name}..."))
 
     # Trigger Spotlight Search
     trigger_spotlight()
@@ -68,24 +73,31 @@ def open_app(app_name, website=None):
         pyautogui.press("enter")
 
 def main():
+    command_map = {
+        "google": ("Google Chrome", None),
+        "youtube": ("Google Chrome", "https://www.youtube.com"),
+        "instagram": ("Google Chrome", "https://www.instagram.com"),
+        "spotify": ("Spotify", None),
+        "whatsapp": ("WhatsApp", None),
+    }
+
     while True:
         command = listen_command()
 
         if command:
-            if "google" in command:
-                open_app("Google Chrome")
-            elif "youtube" in command:
-                open_app("Google Chrome", "https://www.youtube.com")
-            elif "instagram" in command:
-                open_app("Google Chrome", "https://www.instagram.com")
-            elif "spotify" in command:
-                open_app("Spotify")
-            elif "whatsapp" in command:
-                open_app("WhatsApp")
-            elif "stop" in command or "exit" in command:
+            found = False
+            for key in command_map:
+                if key in command:
+                    app, url = command_map[key]
+                    open_app(app, url)
+                    found = True
+                    break
+
+            if "stop" in command or "exit" in command:
                 speak("Goodbye! Have a great day!")
                 break
-            else:
+
+            if not found:
                 speak("I didn't recognize that command. Please say again.")
 
         speak("What next would you like me to open?")
